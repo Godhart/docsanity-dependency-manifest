@@ -1,0 +1,94 @@
+{
+  "format": "dependency-manifest",
+  "version": "1.0",
+  "producer": {
+    "name": "hdl-order",
+    "version": "0.6.0",
+    "analyzer": "hdl-order-syntactic"
+  },
+  "scope": {
+    "project": "fpga-demo",
+    "profile": "default",
+    "area": "hdl",
+    "configuration": {
+      "defines": {},
+      "include_roots": [
+        "rtl"
+      ],
+      "include_search": [],
+      "explicit_dependencies": []
+    }
+  },
+  "sources": [
+    {
+      "id": "rtl"
+    }
+  ],
+  "nodes": [
+    {
+      "id": "file:rtl:lib/child.sv",
+      "kind": "file",
+      "source": "rtl",
+      "path": "lib/child.sv",
+      "content_hash": "sha256:4c3eb76db39b7e9f1581a06439b2a0a4429399c9a101c22b7525dc8d8e1b3e47"
+    },
+    {
+      "id": "file:rtl:lib/top.sv",
+      "kind": "file",
+      "source": "rtl",
+      "path": "lib/top.sv",
+      "content_hash": "sha256:623b8ac4ba3196e1bcde962f08d146ae7fade8b4ce9eb23ffeaf40515767a286"
+    },
+    {
+      "id": "unit:lib::module::child",
+      "kind": "symbol",
+      "name": "child",
+      "file": "file:rtl:lib/child.sv",
+      "attributes": {
+        "language": "verilog",
+        "library": "lib",
+        "symbol_kind": "module"
+      },
+      "line": 1
+    },
+    {
+      "id": "unit:lib::module::top",
+      "kind": "symbol",
+      "name": "top",
+      "file": "file:rtl:lib/top.sv",
+      "attributes": {
+        "language": "verilog",
+        "library": "lib",
+        "symbol_kind": "module"
+      },
+      "line": 1
+    }
+  ],
+  "edges": [
+    {
+      "dependent": "unit:lib::module::top",
+      "dependency": "unit:lib::module::child",
+      "relation": "hdl.instantiates",
+      "evidence": {
+        "file": "file:rtl:lib/top.sv",
+        "line": 1,
+        "precision": "symbol"
+      }
+    }
+  ],
+  "coverage": {
+    "status": "partial",
+    "files": [
+      "file:rtl:lib/child.sv",
+      "file:rtl:lib/top.sv"
+    ],
+    "relation_types": [
+      "hdl.instantiates"
+    ],
+    "limitations": [
+      "HDL symbol edges are syntactic observations, not the complete VUnit semantic graph.",
+      "Unresolved symbol references may be absent. Missing edges must not delete previous observations."
+    ]
+  },
+  "diagnostics": []
+}
